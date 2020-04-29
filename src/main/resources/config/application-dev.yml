@@ -18,6 +18,9 @@ logging:
     ROOT: DEBUG
     io.github.jhipster: DEBUG
     com.swc.demo: DEBUG
+security:
+  basic:
+    enabled: false
 
 management:
   health:
@@ -25,6 +28,35 @@ management:
       enabled: false
 
 spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 500
+        min-idle: 0
+    lettuce:
+      shutdown-timeout: 0
+  kafka:
+    bootstrap-server: 127.0.0.1:9092
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      acks: 1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+     group-id: testGroup
+     auto-offset-reset: earliest
+     enable-auto-commit: true
+     auto-commit-interval: 100
+     key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+     value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
   profiles:
     active: dev
     include:
@@ -79,7 +111,7 @@ spring:
     cache: false
 
 server:
-  port: 8080
+  port: 8087
 
 # ===================================================================
 # JHipster specific properties

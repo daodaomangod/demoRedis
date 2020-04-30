@@ -1,5 +1,6 @@
 package com.swc.demo.repository.search;
 
+import com.swc.demo.repository.UserRepository;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,6 +12,6 @@ import org.springframework.context.annotation.Configuration;
 public class UserSearchRepositoryMockConfiguration {
 
     @MockBean
-    private UserSearchRepository mockUserSearchRepository;
+    private UserRepository mockUserSearchRepository;
 
 }

@@ -3,7 +3,6 @@ package com.swc.demo.web.rest;
 import com.swc.demo.config.Constants;
 import com.swc.demo.domain.User;
 import com.swc.demo.repository.UserRepository;
-import com.swc.demo.repository.search.UserSearchRepository;
 import com.swc.demo.security.AuthoritiesConstants;
 import com.swc.demo.service.MailService;
 import com.swc.demo.service.UserService;
@@ -32,10 +31,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing users.
@@ -76,13 +71,11 @@ public class UserResource {
 
     private final MailService mailService;
 
-    private final UserSearchRepository userSearchRepository;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, UserSearchRepository userSearchRepository) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
-        this.userSearchRepository = userSearchRepository;
     }
 
     /**
@@ -201,10 +194,10 @@ public class UserResource {
      * @param query the query to search.
      * @return the result of the search.
      */
-    @GetMapping("/_search/users/{query}")
-    public List<User> search(@PathVariable String query) {
-        return StreamSupport
-            .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .collect(Collectors.toList());
-    }
+//    @GetMapping("/_search/users/{query}")
+//    public List<User> search(@PathVariable String query) {
+//        return StreamSupport
+//            .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+//            .collect(Collectors.toList());
+//    }
 }

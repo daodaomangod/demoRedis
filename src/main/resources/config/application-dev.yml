@@ -31,7 +31,7 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    password: 123456
+    password: root
     jedis:
       pool:
         max-active: 8
@@ -92,11 +92,13 @@ spring:
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
-  data:
-    elasticsearch:
-      properties:
-        path:
-          home: target/elasticsearch
+#  data:
+#    elasticsearch:
+#      properties:
+#        node:
+#          max_local_storage_nodes: 2
+#        path:
+#          home: target/elasticsearch
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
@@ -111,7 +113,7 @@ spring:
     cache: false
 
 server:
-  port: 8087
+  port: 8089
 
 # ===================================================================
 # JHipster specific properties
